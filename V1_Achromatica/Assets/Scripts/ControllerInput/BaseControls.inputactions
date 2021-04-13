@@ -1,0 +1,33 @@
+{
+    "name": "BaseControls",
+    "maps": [
+        {
+            "name": "FreeRoam",
+            "id": "3b6dde1d-113f-439e-a9d0-70786beb90b5",
+            "actions": [
+                {
+                    "name": "Movement",
+                    "type": "Value",
+                    "id": "764a148a-bd1b-410e-9d27-f4f8813b145c",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a9e06564-4880-4b5a-b59c-8812b67ace98",
+                    "path": "<DualShockGamepad>/leftStick/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
