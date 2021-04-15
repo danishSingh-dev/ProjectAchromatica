@@ -20,9 +20,9 @@ public class @BaseControls : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Movement"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""764a148a-bd1b-410e-9d27-f4f8813b145c"",
-                    ""expectedControlType"": ""Analog"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -31,10 +31,10 @@ public class @BaseControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a9e06564-4880-4b5a-b59c-8812b67ace98"",
-                    ""path"": ""<DualShockGamepad>/leftStick/x"",
+                    ""path"": ""<Keyboard>/#(W)"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard Controls"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -42,7 +42,35 @@ public class @BaseControls : IInputActionCollection, IDisposable
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Keyboard Controls"",
+            ""bindingGroup"": ""Keyboard Controls"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Controller Controls"",
+            ""bindingGroup"": ""Controller Controls"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<DualShockGamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // FreeRoam
         m_FreeRoam = asset.FindActionMap("FreeRoam", throwIfNotFound: true);
@@ -125,6 +153,24 @@ public class @BaseControls : IInputActionCollection, IDisposable
         }
     }
     public FreeRoamActions @FreeRoam => new FreeRoamActions(this);
+    private int m_KeyboardControlsSchemeIndex = -1;
+    public InputControlScheme KeyboardControlsScheme
+    {
+        get
+        {
+            if (m_KeyboardControlsSchemeIndex == -1) m_KeyboardControlsSchemeIndex = asset.FindControlSchemeIndex("Keyboard Controls");
+            return asset.controlSchemes[m_KeyboardControlsSchemeIndex];
+        }
+    }
+    private int m_ControllerControlsSchemeIndex = -1;
+    public InputControlScheme ControllerControlsScheme
+    {
+        get
+        {
+            if (m_ControllerControlsSchemeIndex == -1) m_ControllerControlsSchemeIndex = asset.FindControlSchemeIndex("Controller Controls");
+            return asset.controlSchemes[m_ControllerControlsSchemeIndex];
+        }
+    }
     public interface IFreeRoamActions
     {
         void OnMovement(InputAction.CallbackContext context);
