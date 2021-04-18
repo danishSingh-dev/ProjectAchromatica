@@ -20,8 +20,16 @@ public class @BaseControls : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Movement"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""764a148a-bd1b-410e-9d27-f4f8813b145c"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Guard"",
+                    ""type"": ""Button"",
+                    ""id"": ""70f77b25-8487-431c-8f7a-b910cffac330"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -30,12 +38,23 @@ public class @BaseControls : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""a9e06564-4880-4b5a-b59c-8812b67ace98"",
-                    ""path"": ""<Keyboard>/#(W)"",
+                    ""id"": ""44841115-cac8-4e74-8312-10e9fa492ff8"",
+                    ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard Controls"",
+                    ""processors"": ""StickDeadzone"",
+                    ""groups"": ""Controller Controls"",
                     ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""da05a697-9e4d-496e-b5c4-29f0cc9c4083"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": ""Controller Controls"",
+                    ""action"": ""Guard"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -75,6 +94,7 @@ public class @BaseControls : IInputActionCollection, IDisposable
         // FreeRoam
         m_FreeRoam = asset.FindActionMap("FreeRoam", throwIfNotFound: true);
         m_FreeRoam_Movement = m_FreeRoam.FindAction("Movement", throwIfNotFound: true);
+        m_FreeRoam_Guard = m_FreeRoam.FindAction("Guard", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -125,11 +145,13 @@ public class @BaseControls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_FreeRoam;
     private IFreeRoamActions m_FreeRoamActionsCallbackInterface;
     private readonly InputAction m_FreeRoam_Movement;
+    private readonly InputAction m_FreeRoam_Guard;
     public struct FreeRoamActions
     {
         private @BaseControls m_Wrapper;
         public FreeRoamActions(@BaseControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_FreeRoam_Movement;
+        public InputAction @Guard => m_Wrapper.m_FreeRoam_Guard;
         public InputActionMap Get() { return m_Wrapper.m_FreeRoam; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -142,6 +164,9 @@ public class @BaseControls : IInputActionCollection, IDisposable
                 @Movement.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnMovement;
+                @Guard.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnGuard;
+                @Guard.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnGuard;
+                @Guard.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnGuard;
             }
             m_Wrapper.m_FreeRoamActionsCallbackInterface = instance;
             if (instance != null)
@@ -149,6 +174,9 @@ public class @BaseControls : IInputActionCollection, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Guard.started += instance.OnGuard;
+                @Guard.performed += instance.OnGuard;
+                @Guard.canceled += instance.OnGuard;
             }
         }
     }
@@ -174,5 +202,6 @@ public class @BaseControls : IInputActionCollection, IDisposable
     public interface IFreeRoamActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnGuard(InputAction.CallbackContext context);
     }
 }
