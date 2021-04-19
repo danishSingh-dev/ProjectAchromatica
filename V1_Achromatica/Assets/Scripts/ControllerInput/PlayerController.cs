@@ -29,7 +29,12 @@ namespace Danish.Input
 
             moveDirection = rotationToCamera * moveDirection;
 
+            float difference = Vector3.Distance(transform.position ,((transform.position) + (moveDirection * moveSpeed * Time.fixedDeltaTime)));
+
             transform.position += moveDirection * moveSpeed * Time.fixedDeltaTime;
+            
+            if(difference > 0.01f)
+                transform.rotation = rotationToCamera;
         }
 
         public void MovePlayer(float horizontal, float vertical)

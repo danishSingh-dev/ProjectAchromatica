@@ -33,6 +33,14 @@ public class @BaseControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Camera Control"",
+                    ""type"": ""Value"",
+                    ""id"": ""900e3729-8b08-4b06-a60e-25a38c9db111"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -55,6 +63,17 @@ public class @BaseControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Controller Controls"",
                     ""action"": ""Guard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d4309df-644b-40f7-8c19-66cce552a608"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller Controls"",
+                    ""action"": ""Camera Control"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -95,6 +114,7 @@ public class @BaseControls : IInputActionCollection, IDisposable
         m_FreeRoam = asset.FindActionMap("FreeRoam", throwIfNotFound: true);
         m_FreeRoam_Movement = m_FreeRoam.FindAction("Movement", throwIfNotFound: true);
         m_FreeRoam_Guard = m_FreeRoam.FindAction("Guard", throwIfNotFound: true);
+        m_FreeRoam_CameraControl = m_FreeRoam.FindAction("Camera Control", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -146,12 +166,14 @@ public class @BaseControls : IInputActionCollection, IDisposable
     private IFreeRoamActions m_FreeRoamActionsCallbackInterface;
     private readonly InputAction m_FreeRoam_Movement;
     private readonly InputAction m_FreeRoam_Guard;
+    private readonly InputAction m_FreeRoam_CameraControl;
     public struct FreeRoamActions
     {
         private @BaseControls m_Wrapper;
         public FreeRoamActions(@BaseControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_FreeRoam_Movement;
         public InputAction @Guard => m_Wrapper.m_FreeRoam_Guard;
+        public InputAction @CameraControl => m_Wrapper.m_FreeRoam_CameraControl;
         public InputActionMap Get() { return m_Wrapper.m_FreeRoam; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -167,6 +189,9 @@ public class @BaseControls : IInputActionCollection, IDisposable
                 @Guard.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnGuard;
                 @Guard.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnGuard;
                 @Guard.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnGuard;
+                @CameraControl.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnCameraControl;
+                @CameraControl.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnCameraControl;
+                @CameraControl.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnCameraControl;
             }
             m_Wrapper.m_FreeRoamActionsCallbackInterface = instance;
             if (instance != null)
@@ -177,6 +202,9 @@ public class @BaseControls : IInputActionCollection, IDisposable
                 @Guard.started += instance.OnGuard;
                 @Guard.performed += instance.OnGuard;
                 @Guard.canceled += instance.OnGuard;
+                @CameraControl.started += instance.OnCameraControl;
+                @CameraControl.performed += instance.OnCameraControl;
+                @CameraControl.canceled += instance.OnCameraControl;
             }
         }
     }
@@ -203,5 +231,6 @@ public class @BaseControls : IInputActionCollection, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnGuard(InputAction.CallbackContext context);
+        void OnCameraControl(InputAction.CallbackContext context);
     }
 }

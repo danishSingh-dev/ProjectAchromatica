@@ -11,12 +11,15 @@ namespace Danish.Input
 
     [Serializable]
     public class MoveInputEvent : UnityEvent<float, float> { }
+    [Serializable]
+    public class CameraInputEvent : UnityEvent<float, float> { }
 
     public class InputReceiver : MonoBehaviour
     {
         [SerializeField] private BaseControls baseControls;
         [SerializeField] private Text leftStickText = null;
         [SerializeField] private MoveInputEvent moveInputEvent;
+        [SerializeField] private CameraInputEvent cameraInputEvent;
 
         private void Awake()
         {
@@ -24,7 +27,12 @@ namespace Danish.Input
 
             baseControls.FreeRoam.Movement.performed += OnMovePerformed;
             baseControls.FreeRoam.Movement.canceled += OnMovePerformed;
+
+            baseControls.FreeRoam.CameraControl.performed += OnCameraPerformed;
+            baseControls.FreeRoam.CameraControl.canceled += OnCameraPerformed;
         }
+
+
 
         private void OnEnable()
         {
@@ -44,6 +52,15 @@ namespace Danish.Input
 
             moveInputEvent.Invoke(moveInput.x, moveInput.y);
         }
+
+        private void OnCameraPerformed(InputAction.CallbackContext ctx)
+        {
+            Vector2 changeInput = ctx.ReadValue<Vector2>();
+
+            cameraInputEvent.Invoke(changeInput.x, changeInput.y);
+        }
+
+        
 
 
         void HandleLeftStick(Vector2 vector)
