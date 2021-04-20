@@ -30,9 +30,14 @@ namespace Danish.Input
 
             baseControls.FreeRoam.CameraControl.performed += OnCameraPerformed;
             baseControls.FreeRoam.CameraControl.canceled += OnCameraPerformed;
+
+            baseControls.FreeRoam.LightAttack.performed += LightAttack_performed;
         }
 
-
+        private void LightAttack_performed(InputAction.CallbackContext obj)
+        {
+            throw new NotImplementedException();
+        }
 
         private void OnEnable()
         {

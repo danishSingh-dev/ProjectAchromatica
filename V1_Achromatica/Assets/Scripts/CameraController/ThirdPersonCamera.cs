@@ -9,10 +9,8 @@ namespace Danish.Input
 
     public class ThirdPersonCamera : MonoBehaviour
     {
-        //[SerializeField] private float distanceToPlayer = 5f;
         [SerializeField] private float rotationSpeed = 10f;
         [SerializeField] private Transform target = null;
-        //[SerializeField] private Transform player = null;
 
         private Camera _camera = null;
         private Transform _camTransform = null;
@@ -33,18 +31,6 @@ namespace Danish.Input
         }
 
 
-
-        private void SetCameraDistance(float distance)
-        {
-            Vector3 cameraPosition = Vector3.zero;
-            Vector3 playerPosition = Vector3.zero;
-
-            cameraPosition = _camTransform.position;
-            //playerPosition = player.position;
-
-            //float currentDistance = Vector3.Distance(playerPosition, cameraPosition);
-
-        }
 
         private void CameraFunctionality()
         {
