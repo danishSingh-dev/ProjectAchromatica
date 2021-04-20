@@ -1,18 +1,81 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Events;
+using System;
+using UnityEngine.InputSystem;
 
-public class InputReceiver : MonoBehaviour
+namespace Danish.Input
 {
-    // Start is called before the first frame update
-    void Start()
+
+
+
+    [Serializable]
+    public class MoveInputEvent : UnityEvent<float, float> { }
+    [Serializable]
+    public class CameraInputEvent : UnityEvent<float, float> { }
+
+    public class InputReceiver : MonoBehaviour
     {
+        [SerializeField] private BaseControls baseControls;
+        [SerializeField] private Text leftStickText = null;
+        [SerializeField] private MoveInputEvent moveInputEvent;
+        [SerializeField] private CameraInputEvent cameraInputEvent;
+
+        private void Awake()
+        {
+            baseControls = new BaseControls();
+
+            baseControls.FreeRoam.Movement.performed += OnMovePerformed;
+            baseControls.FreeRoam.Movement.canceled += OnMovePerformed;
+
+            baseControls.FreeRoam.CameraControl.performed += OnCameraPerformed;
+            baseControls.FreeRoam.CameraControl.canceled += OnCameraPerformed;
+
+            baseControls.FreeRoam.LightAttack.performed += LightAttack_performed;
+        }
+
+        private void LightAttack_performed(InputAction.CallbackContext obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OnEnable()
+        {
+            baseControls.FreeRoam.Enable();
+        }
+
+        private void OnDisable()
+        {
+            baseControls.FreeRoam.Disable();
+        }
+
+
+        private void OnMovePerformed(InputAction.CallbackContext ctx)
+        {
+            Vector2 moveInput = ctx.ReadValue<Vector2>();
+            leftStickText.text = moveInput.ToString();
+
+            moveInputEvent.Invoke(moveInput.x, moveInput.y);
+        }
+
+        private void OnCameraPerformed(InputAction.CallbackContext ctx)
+        {
+            Vector2 changeInput = ctx.ReadValue<Vector2>();
+
+            cameraInputEvent.Invoke(changeInput.x, changeInput.y);
+        }
+
         
+
+
+        void HandleLeftStick(Vector2 vector)
+        {
+            leftStickText.text = vector.ToString();
+        }
+
+
+
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
