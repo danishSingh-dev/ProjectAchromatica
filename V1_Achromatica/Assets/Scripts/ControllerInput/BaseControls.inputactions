@@ -27,7 +27,7 @@
                     "id": "70f77b25-8487-431c-8f7a-b910cffac330",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press(behavior=2)"
                 },
                 {
                     "name": "Light Attack",
@@ -35,7 +35,7 @@
                     "id": "f32ef602-c054-4ba4-a331-5f523c71ca99",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Tap,Hold"
                 },
                 {
                     "name": "Heavy Attack",
@@ -43,7 +43,95 @@
                     "id": "1a5d7f2d-8af1-43f3-b933-2bfe5b8123fb",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Tap,Hold"
+                },
+                {
+                    "name": "Ranged Attack",
+                    "type": "Button",
+                    "id": "2b29833b-c858-4613-bb8b-ee83acc80f12",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap,Hold"
+                },
+                {
+                    "name": "Dodge",
+                    "type": "Button",
+                    "id": "926ae59b-5658-4569-9134-235eb955f866",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap,Hold"
+                },
+                {
+                    "name": "Speed Powers",
+                    "type": "Button",
+                    "id": "1b76a81c-d423-45bb-8b84-cbc8c3baf223",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap,Hold"
+                },
+                {
+                    "name": "Strength Powers",
+                    "type": "Button",
+                    "id": "eabe659f-e492-4e53-9416-015821b13099",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap,Hold"
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "803f3fb6-bc4c-4d6a-8825-cb217ccc79e9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap,MultiTap"
+                },
+                {
+                    "name": "Camera Reset",
+                    "type": "Button",
+                    "id": "e348cabc-08b3-4fb0-9a75-933222c398fb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap"
+                },
+                {
+                    "name": "Options",
+                    "type": "Button",
+                    "id": "26ee3a02-b16d-4564-a9cf-f9fe1fdd86d7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "DirUp",
+                    "type": "Button",
+                    "id": "055d8547-6203-4c2f-a46e-8728b665faf0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap,Hold"
+                },
+                {
+                    "name": "DirLeft",
+                    "type": "Button",
+                    "id": "cd4acb82-65e9-4571-aa95-f9683bcc7047",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap,Hold"
+                },
+                {
+                    "name": "DirRight",
+                    "type": "Button",
+                    "id": "d299d802-2e88-4ca3-980e-146710fa1b7c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap,Hold"
+                },
+                {
+                    "name": "DirDown",
+                    "type": "Button",
+                    "id": "0f8477f2-b92c-4b22-9362-df5554b522ec",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap,Hold"
                 }
             ],
             "bindings": [
@@ -118,7 +206,7 @@
                     "id": "7d4309df-644b-40f7-8c19-66cce552a608",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "StickDeadzone",
                     "groups": "Controller Controls",
                     "action": "Camera Control",
                     "isComposite": false,
@@ -183,7 +271,7 @@
                     "name": "",
                     "id": "da05a697-9e4d-496e-b5c4-29f0cc9c4083",
                     "path": "<Gamepad>/leftShoulder",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Controller Controls",
                     "action": "Guard",
@@ -198,6 +286,127 @@
                     "processors": "",
                     "groups": "Keyboard Controls",
                     "action": "Guard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aa48240a-df6b-4341-a0b5-72499269e923",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller Controls",
+                    "action": "Ranged Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d7833b3a-ccd3-4439-b0e2-2258d529bafa",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller Controls",
+                    "action": "Dodge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "19f101fe-c43e-4101-8773-11fd511233d5",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller Controls",
+                    "action": "Speed Powers",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0d29509c-5414-4f9b-a5da-86c452329a18",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller Controls",
+                    "action": "Strength Powers",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cacfd5aa-2073-4116-a101-3ede6718d258",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller Controls",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3bd374de-348b-49f7-8eaf-627702ea6bda",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller Controls",
+                    "action": "Camera Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c9d5190f-f1f6-40f9-a225-d805eef0434c",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller Controls",
+                    "action": "Options",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0d654a72-ad09-4487-9a65-57e5e09310aa",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller Controls",
+                    "action": "DirUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6b48ca04-517c-449e-9d8f-305d95a5594c",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller Controls",
+                    "action": "DirLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6a22fc3b-8398-48a9-9a34-834c811ff829",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller Controls",
+                    "action": "DirRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8203b50c-56a2-4abd-a0bf-75162eee1c32",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller Controls",
+                    "action": "DirDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
