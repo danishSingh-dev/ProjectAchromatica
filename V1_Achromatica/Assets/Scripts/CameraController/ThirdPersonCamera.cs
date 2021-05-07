@@ -23,12 +23,14 @@ namespace Danish.CameraController
         [SerializeField] private float rotationSpeedY = 5f;
         [SerializeField] private float maxYAngle = 50f;
         [SerializeField] private float minYAngle = -10f;
+        [SerializeField] private bool updateCameraRotation = false;
 
         [Header("Movement Settings")]
         [SerializeField] private float followSpeed = 5f;
         [SerializeField] private float distanceToTarget = 5f;
         [SerializeField] private float maxDistanceBetweenTargets = 0.1f;
         [SerializeField] private float smoothingFactor = 2f;
+        [SerializeField] private bool updateTargetPosition = false;
 
 
         private Camera _camera = null;
@@ -42,7 +44,6 @@ namespace Danish.CameraController
         // Movement Handling Variables
         private Vector3 playerTargetCurrentPosition = Vector3.zero;
         private Vector3 cameraTargetCurrentPosition = Vector3.zero;
-        private bool updateTargetPosition = false;
         
 
         #region MonoBehaviour Methods
@@ -55,6 +56,10 @@ namespace Danish.CameraController
 
         private void Start( )
         {
+            //QualitySettings.vSyncCount = 1;
+            Application.targetFrameRate = 200;
+
+
             // Align target on CameraRig with target on PlayerObject
             AlignCameraTarget( );
 
@@ -69,20 +74,25 @@ namespace Danish.CameraController
         {
             playerTargetCurrentPosition = playerCameraTarget.position;
 
-            if(DistanceBetweenTargets() > maxDistanceBetweenTargets )
-            {
-                updateTargetPosition = true;
-            }
-            else
-            {
-                updateTargetPosition = false;
-            }
 
             // Get assigned camera movement input and set horizontal and vertical variables
             GetCameraMovementInput( );
 
             // Process horizontal and vertical values to get delta axis rotation values to apply to pivot
             CalculateRotationValues( );
+
+
+            if(DistanceBetweenTargets() > maxDistanceBetweenTargets )
+                updateTargetPosition = true;
+            else
+                updateTargetPosition = false;
+            
+            
+
+            if ( _horizontal != 0f || _vertical != 0f )
+                updateCameraRotation = true;
+            else
+                updateCameraRotation = false;
         }
 
         private void FixedUpdate()
@@ -137,8 +147,11 @@ namespace Danish.CameraController
             if ( cameraPivot == null )
             { return; }
 
+
+
             HorizontalRotationValue( );
             VerticalRotationValue( );
+
         }
 
         private void HorizontalRotationValue( )
