@@ -30,6 +30,8 @@ public class InputHandler : MonoBehaviour
     private bool leftStickTap = false, leftStickHold = false;
     private bool rightStickTap = false, rightStickHold = false;
 
+    private bool optionsButtonTap = false;
+
     #endregion
 
     #region Public Getters

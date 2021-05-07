@@ -36,7 +36,7 @@ namespace Danish.Input
 
         private void FixedUpdate()
         {
-            MoveFunctionality();2
+            MoveFunctionality();
         }
 
         #endregion
