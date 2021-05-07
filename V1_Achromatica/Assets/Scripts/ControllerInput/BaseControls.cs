@@ -40,7 +40,7 @@ public class @BaseControls : IInputActionCollection, IDisposable
                     ""id"": ""70f77b25-8487-431c-8f7a-b910cffac330"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=2)""
                 },
                 {
                     ""name"": ""Light Attack"",
@@ -48,7 +48,7 @@ public class @BaseControls : IInputActionCollection, IDisposable
                     ""id"": ""f32ef602-c054-4ba4-a331-5f523c71ca99"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Tap,Hold""
                 },
                 {
                     ""name"": ""Heavy Attack"",
@@ -56,7 +56,95 @@ public class @BaseControls : IInputActionCollection, IDisposable
                     ""id"": ""1a5d7f2d-8af1-43f3-b933-2bfe5b8123fb"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Tap,Hold""
+                },
+                {
+                    ""name"": ""Ranged Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""2b29833b-c858-4613-bb8b-ee83acc80f12"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap,Hold""
+                },
+                {
+                    ""name"": ""Dodge"",
+                    ""type"": ""Button"",
+                    ""id"": ""926ae59b-5658-4569-9134-235eb955f866"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap,Hold""
+                },
+                {
+                    ""name"": ""Speed Powers"",
+                    ""type"": ""Button"",
+                    ""id"": ""1b76a81c-d423-45bb-8b84-cbc8c3baf223"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap,Hold""
+                },
+                {
+                    ""name"": ""Strength Powers"",
+                    ""type"": ""Button"",
+                    ""id"": ""eabe659f-e492-4e53-9416-015821b13099"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap,Hold""
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""803f3fb6-bc4c-4d6a-8825-cb217ccc79e9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap,MultiTap""
+                },
+                {
+                    ""name"": ""Camera Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""e348cabc-08b3-4fb0-9a75-933222c398fb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap""
+                },
+                {
+                    ""name"": ""Options"",
+                    ""type"": ""Button"",
+                    ""id"": ""26ee3a02-b16d-4564-a9cf-f9fe1fdd86d7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""DirUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""055d8547-6203-4c2f-a46e-8728b665faf0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap,Hold""
+                },
+                {
+                    ""name"": ""DirLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""cd4acb82-65e9-4571-aa95-f9683bcc7047"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap,Hold""
+                },
+                {
+                    ""name"": ""DirRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""d299d802-2e88-4ca3-980e-146710fa1b7c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap,Hold""
+                },
+                {
+                    ""name"": ""DirDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""0f8477f2-b92c-4b22-9362-df5554b522ec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap,Hold""
                 }
             ],
             ""bindings"": [
@@ -131,7 +219,7 @@ public class @BaseControls : IInputActionCollection, IDisposable
                     ""id"": ""7d4309df-644b-40f7-8c19-66cce552a608"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone"",
                     ""groups"": ""Controller Controls"",
                     ""action"": ""Camera Control"",
                     ""isComposite"": false,
@@ -196,7 +284,7 @@ public class @BaseControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""da05a697-9e4d-496e-b5c4-29f0cc9c4083"",
                     ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": ""Press(behavior=2)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controller Controls"",
                     ""action"": ""Guard"",
@@ -211,6 +299,127 @@ public class @BaseControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard Controls"",
                     ""action"": ""Guard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aa48240a-df6b-4341-a0b5-72499269e923"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller Controls"",
+                    ""action"": ""Ranged Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d7833b3a-ccd3-4439-b0e2-2258d529bafa"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller Controls"",
+                    ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""19f101fe-c43e-4101-8773-11fd511233d5"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller Controls"",
+                    ""action"": ""Speed Powers"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d29509c-5414-4f9b-a5da-86c452329a18"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller Controls"",
+                    ""action"": ""Strength Powers"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cacfd5aa-2073-4116-a101-3ede6718d258"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller Controls"",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3bd374de-348b-49f7-8eaf-627702ea6bda"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller Controls"",
+                    ""action"": ""Camera Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c9d5190f-f1f6-40f9-a225-d805eef0434c"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller Controls"",
+                    ""action"": ""Options"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d654a72-ad09-4487-9a65-57e5e09310aa"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller Controls"",
+                    ""action"": ""DirUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6b48ca04-517c-449e-9d8f-305d95a5594c"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller Controls"",
+                    ""action"": ""DirLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a22fc3b-8398-48a9-9a34-834c811ff829"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller Controls"",
+                    ""action"": ""DirRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8203b50c-56a2-4abd-a0bf-75162eee1c32"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller Controls"",
+                    ""action"": ""DirDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -254,6 +463,17 @@ public class @BaseControls : IInputActionCollection, IDisposable
         m_FreeRoam_Guard = m_FreeRoam.FindAction("Guard", throwIfNotFound: true);
         m_FreeRoam_LightAttack = m_FreeRoam.FindAction("Light Attack", throwIfNotFound: true);
         m_FreeRoam_HeavyAttack = m_FreeRoam.FindAction("Heavy Attack", throwIfNotFound: true);
+        m_FreeRoam_RangedAttack = m_FreeRoam.FindAction("Ranged Attack", throwIfNotFound: true);
+        m_FreeRoam_Dodge = m_FreeRoam.FindAction("Dodge", throwIfNotFound: true);
+        m_FreeRoam_SpeedPowers = m_FreeRoam.FindAction("Speed Powers", throwIfNotFound: true);
+        m_FreeRoam_StrengthPowers = m_FreeRoam.FindAction("Strength Powers", throwIfNotFound: true);
+        m_FreeRoam_Sprint = m_FreeRoam.FindAction("Sprint", throwIfNotFound: true);
+        m_FreeRoam_CameraReset = m_FreeRoam.FindAction("Camera Reset", throwIfNotFound: true);
+        m_FreeRoam_Options = m_FreeRoam.FindAction("Options", throwIfNotFound: true);
+        m_FreeRoam_DirUp = m_FreeRoam.FindAction("DirUp", throwIfNotFound: true);
+        m_FreeRoam_DirLeft = m_FreeRoam.FindAction("DirLeft", throwIfNotFound: true);
+        m_FreeRoam_DirRight = m_FreeRoam.FindAction("DirRight", throwIfNotFound: true);
+        m_FreeRoam_DirDown = m_FreeRoam.FindAction("DirDown", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -308,6 +528,17 @@ public class @BaseControls : IInputActionCollection, IDisposable
     private readonly InputAction m_FreeRoam_Guard;
     private readonly InputAction m_FreeRoam_LightAttack;
     private readonly InputAction m_FreeRoam_HeavyAttack;
+    private readonly InputAction m_FreeRoam_RangedAttack;
+    private readonly InputAction m_FreeRoam_Dodge;
+    private readonly InputAction m_FreeRoam_SpeedPowers;
+    private readonly InputAction m_FreeRoam_StrengthPowers;
+    private readonly InputAction m_FreeRoam_Sprint;
+    private readonly InputAction m_FreeRoam_CameraReset;
+    private readonly InputAction m_FreeRoam_Options;
+    private readonly InputAction m_FreeRoam_DirUp;
+    private readonly InputAction m_FreeRoam_DirLeft;
+    private readonly InputAction m_FreeRoam_DirRight;
+    private readonly InputAction m_FreeRoam_DirDown;
     public struct FreeRoamActions
     {
         private @BaseControls m_Wrapper;
@@ -317,6 +548,17 @@ public class @BaseControls : IInputActionCollection, IDisposable
         public InputAction @Guard => m_Wrapper.m_FreeRoam_Guard;
         public InputAction @LightAttack => m_Wrapper.m_FreeRoam_LightAttack;
         public InputAction @HeavyAttack => m_Wrapper.m_FreeRoam_HeavyAttack;
+        public InputAction @RangedAttack => m_Wrapper.m_FreeRoam_RangedAttack;
+        public InputAction @Dodge => m_Wrapper.m_FreeRoam_Dodge;
+        public InputAction @SpeedPowers => m_Wrapper.m_FreeRoam_SpeedPowers;
+        public InputAction @StrengthPowers => m_Wrapper.m_FreeRoam_StrengthPowers;
+        public InputAction @Sprint => m_Wrapper.m_FreeRoam_Sprint;
+        public InputAction @CameraReset => m_Wrapper.m_FreeRoam_CameraReset;
+        public InputAction @Options => m_Wrapper.m_FreeRoam_Options;
+        public InputAction @DirUp => m_Wrapper.m_FreeRoam_DirUp;
+        public InputAction @DirLeft => m_Wrapper.m_FreeRoam_DirLeft;
+        public InputAction @DirRight => m_Wrapper.m_FreeRoam_DirRight;
+        public InputAction @DirDown => m_Wrapper.m_FreeRoam_DirDown;
         public InputActionMap Get() { return m_Wrapper.m_FreeRoam; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -341,6 +583,39 @@ public class @BaseControls : IInputActionCollection, IDisposable
                 @HeavyAttack.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnHeavyAttack;
                 @HeavyAttack.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnHeavyAttack;
                 @HeavyAttack.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnHeavyAttack;
+                @RangedAttack.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnRangedAttack;
+                @RangedAttack.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnRangedAttack;
+                @RangedAttack.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnRangedAttack;
+                @Dodge.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDodge;
+                @Dodge.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDodge;
+                @Dodge.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDodge;
+                @SpeedPowers.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnSpeedPowers;
+                @SpeedPowers.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnSpeedPowers;
+                @SpeedPowers.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnSpeedPowers;
+                @StrengthPowers.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnStrengthPowers;
+                @StrengthPowers.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnStrengthPowers;
+                @StrengthPowers.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnStrengthPowers;
+                @Sprint.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnSprint;
+                @Sprint.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnSprint;
+                @Sprint.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnSprint;
+                @CameraReset.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnCameraReset;
+                @CameraReset.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnCameraReset;
+                @CameraReset.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnCameraReset;
+                @Options.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnOptions;
+                @Options.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnOptions;
+                @Options.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnOptions;
+                @DirUp.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirUp;
+                @DirUp.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirUp;
+                @DirUp.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirUp;
+                @DirLeft.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirLeft;
+                @DirLeft.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirLeft;
+                @DirLeft.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirLeft;
+                @DirRight.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirRight;
+                @DirRight.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirRight;
+                @DirRight.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirRight;
+                @DirDown.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirDown;
+                @DirDown.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirDown;
+                @DirDown.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirDown;
             }
             m_Wrapper.m_FreeRoamActionsCallbackInterface = instance;
             if (instance != null)
@@ -360,6 +635,39 @@ public class @BaseControls : IInputActionCollection, IDisposable
                 @HeavyAttack.started += instance.OnHeavyAttack;
                 @HeavyAttack.performed += instance.OnHeavyAttack;
                 @HeavyAttack.canceled += instance.OnHeavyAttack;
+                @RangedAttack.started += instance.OnRangedAttack;
+                @RangedAttack.performed += instance.OnRangedAttack;
+                @RangedAttack.canceled += instance.OnRangedAttack;
+                @Dodge.started += instance.OnDodge;
+                @Dodge.performed += instance.OnDodge;
+                @Dodge.canceled += instance.OnDodge;
+                @SpeedPowers.started += instance.OnSpeedPowers;
+                @SpeedPowers.performed += instance.OnSpeedPowers;
+                @SpeedPowers.canceled += instance.OnSpeedPowers;
+                @StrengthPowers.started += instance.OnStrengthPowers;
+                @StrengthPowers.performed += instance.OnStrengthPowers;
+                @StrengthPowers.canceled += instance.OnStrengthPowers;
+                @Sprint.started += instance.OnSprint;
+                @Sprint.performed += instance.OnSprint;
+                @Sprint.canceled += instance.OnSprint;
+                @CameraReset.started += instance.OnCameraReset;
+                @CameraReset.performed += instance.OnCameraReset;
+                @CameraReset.canceled += instance.OnCameraReset;
+                @Options.started += instance.OnOptions;
+                @Options.performed += instance.OnOptions;
+                @Options.canceled += instance.OnOptions;
+                @DirUp.started += instance.OnDirUp;
+                @DirUp.performed += instance.OnDirUp;
+                @DirUp.canceled += instance.OnDirUp;
+                @DirLeft.started += instance.OnDirLeft;
+                @DirLeft.performed += instance.OnDirLeft;
+                @DirLeft.canceled += instance.OnDirLeft;
+                @DirRight.started += instance.OnDirRight;
+                @DirRight.performed += instance.OnDirRight;
+                @DirRight.canceled += instance.OnDirRight;
+                @DirDown.started += instance.OnDirDown;
+                @DirDown.performed += instance.OnDirDown;
+                @DirDown.canceled += instance.OnDirDown;
             }
         }
     }
@@ -389,5 +697,16 @@ public class @BaseControls : IInputActionCollection, IDisposable
         void OnGuard(InputAction.CallbackContext context);
         void OnLightAttack(InputAction.CallbackContext context);
         void OnHeavyAttack(InputAction.CallbackContext context);
+        void OnRangedAttack(InputAction.CallbackContext context);
+        void OnDodge(InputAction.CallbackContext context);
+        void OnSpeedPowers(InputAction.CallbackContext context);
+        void OnStrengthPowers(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
+        void OnCameraReset(InputAction.CallbackContext context);
+        void OnOptions(InputAction.CallbackContext context);
+        void OnDirUp(InputAction.CallbackContext context);
+        void OnDirLeft(InputAction.CallbackContext context);
+        void OnDirRight(InputAction.CallbackContext context);
+        void OnDirDown(InputAction.CallbackContext context);
     }
 }

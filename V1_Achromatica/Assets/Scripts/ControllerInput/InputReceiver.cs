@@ -16,11 +16,18 @@ namespace Danish.Input
 
     public class InputReceiver : MonoBehaviour
     {
+
+        #region Variables
+
         [SerializeField] private BaseControls baseControls;
         [SerializeField] private Text leftStickText = null;
         [SerializeField] private MoveInputEvent moveInputEvent;
         [SerializeField] private CameraInputEvent cameraInputEvent;
 
+
+        #endregion
+
+        #region MonoBehaviours
         private void Awake()
         {
             baseControls = new BaseControls();
@@ -34,10 +41,7 @@ namespace Danish.Input
             baseControls.FreeRoam.LightAttack.performed += LightAttack_performed;
         }
 
-        private void LightAttack_performed(InputAction.CallbackContext obj)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         private void OnEnable()
         {
@@ -49,6 +53,10 @@ namespace Danish.Input
             baseControls.FreeRoam.Disable();
         }
 
+        #endregion
+
+
+        #region Callback Functions
 
         private void OnMovePerformed(InputAction.CallbackContext ctx)
         {
@@ -65,8 +73,16 @@ namespace Danish.Input
             cameraInputEvent.Invoke(changeInput.x, changeInput.y);
         }
 
-        
+        private void LightAttack_performed( InputAction.CallbackContext obj )
+        {
+            Debug.Log( "Light Attack" );
+        }
 
+
+        #endregion
+
+
+        #region Utility Functions
 
         void HandleLeftStick(Vector2 vector)
         {
@@ -74,7 +90,7 @@ namespace Danish.Input
         }
 
 
-
+        #endregion
 
     }
 
