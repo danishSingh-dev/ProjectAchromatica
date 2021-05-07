@@ -38,13 +38,25 @@ public class InputHandler : MonoBehaviour
     
     public float Horizontal { get { return _horizontal; } }
     public float Vertical { get { return _vertical; } }
+    public Vector2 LeftStickVector { get { return leftStickVector; } }
+    public Vector2 RightStickVector { get { return rightStickVector; } }
 
 
 
     #endregion
+
+
+
+
     public void GetMovementVariables(float hor, float ver )
     {
-        _horizontal = hor;
-        _vertical = ver;
+        leftStickVector.x = hor;
+        leftStickVector.y = ver;
+    }
+
+    public void GetCameraMovementVariables(float camX, float camY )
+    {
+        rightStickVector.x = camX;
+        rightStickVector.y = camY;
     }
 }

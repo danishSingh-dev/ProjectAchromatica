@@ -20,7 +20,6 @@ namespace Danish.Input
         #region Variables
 
         [SerializeField] private BaseControls baseControls;
-        [SerializeField] private Text leftStickText = null;
         [SerializeField] private MoveInputEvent moveInputEvent;
         [SerializeField] private CameraInputEvent cameraInputEvent;
 
@@ -61,7 +60,6 @@ namespace Danish.Input
         private void OnMovePerformed(InputAction.CallbackContext ctx)
         {
             Vector2 moveInput = ctx.ReadValue<Vector2>();
-            leftStickText.text = moveInput.ToString();
 
             moveInputEvent.Invoke(moveInput.x, moveInput.y);
         }
@@ -84,11 +82,7 @@ namespace Danish.Input
 
         #region Utility Functions
 
-        void HandleLeftStick(Vector2 vector)
-        {
-            leftStickText.text = vector.ToString();
-        }
-
+        
 
         #endregion
 
