@@ -27,7 +27,7 @@ namespace Danish.CameraController
         [Header("Movement Settings")]
         [SerializeField] private float followSpeed = 5f;
         [SerializeField] private float distanceToTarget = 5f;
-        [SerializeField] private float maxDistanceBetweenTargets = 1f;
+        [SerializeField] private float maxDistanceBetweenTargets = 0.1f;
         [SerializeField] private float smoothingFactor = 2f;
 
 
@@ -72,6 +72,10 @@ namespace Danish.CameraController
             if(DistanceBetweenTargets() > maxDistanceBetweenTargets )
             {
                 updateTargetPosition = true;
+            }
+            else
+            {
+                updateTargetPosition = false;
             }
 
             // Get assigned camera movement input and set horizontal and vertical variables

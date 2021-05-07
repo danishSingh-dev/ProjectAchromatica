@@ -431,6 +431,10 @@ PrefabInstance:
       propertyPath: playerCameraTarget
       value: 
       objectReference: {fileID: 299849725}
+    - target: {fileID: 3636326417867574252, guid: 805f4ce752b723f4790cfd6ced673a5b, type: 3}
+      propertyPath: maxDistanceBetweenTargets
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3636326417867574253, guid: 805f4ce752b723f4790cfd6ced673a5b, type: 3}
       propertyPath: m_RootOrder
       value: 1
