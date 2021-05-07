@@ -28,8 +28,8 @@ namespace Danish.Input
         {
             if(_inputHandler != null )
             {
-                _horizontal = _inputHandler.Horizontal;
-                _vertical = _inputHandler.Vertical;
+                _horizontal = _inputHandler.LeftStickVector.x;
+                _vertical = _inputHandler.LeftStickVector.y;
             }
         }
 
@@ -46,21 +46,21 @@ namespace Danish.Input
 
         private void MoveFunctionality()
         {
-            //Vector3 moveDirection = Vector3.forward * _vertical + Vector3.right * _horizontal;
+            Vector3 moveDirection = Vector3.forward * _vertical + Vector3.right * _horizontal;
 
-            //Vector3 projectedCameraForward = Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up);
-            //Quaternion rotationToCamera = Quaternion.LookRotation(projectedCameraForward, Vector3.up);
+            Vector3 projectedCameraForward = Vector3.ProjectOnPlane( Camera.main.transform.forward , Vector3.up );
+            Quaternion rotationToCamera = Quaternion.LookRotation( projectedCameraForward , Vector3.up );
 
-            //moveDirection = rotationToCamera * moveDirection;
+            moveDirection = rotationToCamera * moveDirection;
 
-            //float difference = Vector3.Distance(transform.position ,((transform.position) + (moveDirection * moveSpeed * Time.fixedDeltaTime)));
+            float difference = Vector3.Distance( transform.position , ( ( transform.position ) + ( moveDirection * moveSpeed * Time.fixedDeltaTime ) ) );
 
-            //transform.position += moveDirection * moveSpeed * Time.fixedDeltaTime;
-            
-            //if(difference > 0.01f)
-            //    transform.rotation = rotationToCamera;
+            transform.position += moveDirection * moveSpeed * Time.fixedDeltaTime;
 
-            UpdateAnimatorVariables( );
+            if ( difference > 0.01f )
+                transform.rotation = rotationToCamera;
+
+            //UpdateAnimatorVariables( );
         }
 
         private void UpdateAnimatorVariables()
