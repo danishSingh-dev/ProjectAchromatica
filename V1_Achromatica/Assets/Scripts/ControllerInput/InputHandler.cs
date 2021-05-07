@@ -8,6 +8,28 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private float _horizontal = 0f;
     [SerializeField] private float _vertical = 0f;
 
+    private Vector2 leftStickVector = Vector2.zero;
+    private Vector2 rightStickVector = Vector2.zero;
+    
+    private bool crossButtonTap = false, crossButtonHold = false;
+    private bool squareButtonTap = false, squareButtonHold = false;
+    private bool triangleButtonTap = false, triangleButtonHold = false;
+    private bool circleButtonTap = false, circleButtonHold = false;
+
+    private bool leftDirPadTap = false, leftDirPadHold = false;
+    private bool rightDirPadTap = false, rightDirPadHold = false;
+    private bool upDirPadTap = false, upDirPadHold = false;
+    private bool downDirPadTap = false, downDirPadHold = false;
+
+    private bool leftBumperTap = false, leftBumperHold = false;
+    private bool rightBumperTap = false, rightBumperHold = false;
+
+    private bool leftTriggerTap = false, leftTriggerHold = false;
+    private bool rightTriggerTap = false, rightTriggerHold = false;
+
+    private bool leftStickTap = false, leftStickHold = false;
+    private bool rightStickTap = false, rightStickHold = false;
+
     #endregion
 
     #region Public Getters
