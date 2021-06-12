@@ -1,0 +1,17 @@
+{
+    "name": "CombatAssembly",
+    "rootNamespace": "Combat",
+    "references": [
+        "GUID:94c766d8a4fad534880e8bfc71c91192",
+        "GUID:40dee2d8c9920124f8156ae0e1c7220c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

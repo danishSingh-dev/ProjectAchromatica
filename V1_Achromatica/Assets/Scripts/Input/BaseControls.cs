@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/ControllerInput/BaseControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/InputActions Assets/BaseControls.inputactions'
 
 using System;
 using System.Collections;
@@ -6,12 +6,14 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class @BaseControls : IInputActionCollection, IDisposable
+namespace InputFunction
 {
-    public InputActionAsset asset { get; }
-    public @BaseControls()
+    public class @BaseControls : IInputActionCollection, IDisposable
     {
-        asset = InputActionAsset.FromJson(@"{
+        public InputActionAsset asset { get; }
+        public @BaseControls()
+        {
+            asset = InputActionAsset.FromJson(@"{
     ""name"": ""BaseControls"",
     ""maps"": [
         {
@@ -48,7 +50,7 @@ public class @BaseControls : IInputActionCollection, IDisposable
                     ""id"": ""f32ef602-c054-4ba4-a331-5f523c71ca99"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap,Hold""
+                    ""interactions"": ""Tap(duration=0.6),SlowTap(duration=1)""
                 },
                 {
                     ""name"": ""Heavy Attack"",
@@ -56,7 +58,7 @@ public class @BaseControls : IInputActionCollection, IDisposable
                     ""id"": ""1a5d7f2d-8af1-43f3-b933-2bfe5b8123fb"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap,Hold""
+                    ""interactions"": ""Tap(duration=0.6),SlowTap(duration=1)""
                 },
                 {
                     ""name"": ""Ranged Attack"",
@@ -230,7 +232,7 @@ public class @BaseControls : IInputActionCollection, IDisposable
                     ""id"": ""1258fd0c-1eb3-46dc-b20b-f3395e64d6d7"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""NormalizeVector2"",
                     ""groups"": ""Keyboard Controls"",
                     ""action"": ""Camera Control"",
                     ""isComposite"": false,
@@ -240,7 +242,7 @@ public class @BaseControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""a662d2ee-893b-4a92-8d80-1dd8b425dce9"",
                     ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": ""Press,Hold"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controller Controls"",
                     ""action"": ""Light Attack"",
@@ -309,6 +311,17 @@ public class @BaseControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controller Controls"",
+                    ""action"": ""Ranged Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cac1af76-9fcf-45df-ae12-c6fe38b41fb5"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard Controls"",
                     ""action"": ""Ranged Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -449,264 +462,270 @@ public class @BaseControls : IInputActionCollection, IDisposable
             ""devices"": [
                 {
                     ""devicePath"": ""<DualShockGamepad>"",
-                    ""isOptional"": false,
+                    ""isOptional"": true,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<XInputController>"",
+                    ""isOptional"": true,
                     ""isOR"": false
                 }
             ]
         }
     ]
 }");
+            // FreeRoam
+            m_FreeRoam = asset.FindActionMap("FreeRoam", throwIfNotFound: true);
+            m_FreeRoam_Movement = m_FreeRoam.FindAction("Movement", throwIfNotFound: true);
+            m_FreeRoam_CameraControl = m_FreeRoam.FindAction("Camera Control", throwIfNotFound: true);
+            m_FreeRoam_Guard = m_FreeRoam.FindAction("Guard", throwIfNotFound: true);
+            m_FreeRoam_LightAttack = m_FreeRoam.FindAction("Light Attack", throwIfNotFound: true);
+            m_FreeRoam_HeavyAttack = m_FreeRoam.FindAction("Heavy Attack", throwIfNotFound: true);
+            m_FreeRoam_RangedAttack = m_FreeRoam.FindAction("Ranged Attack", throwIfNotFound: true);
+            m_FreeRoam_Dodge = m_FreeRoam.FindAction("Dodge", throwIfNotFound: true);
+            m_FreeRoam_SpeedPowers = m_FreeRoam.FindAction("Speed Powers", throwIfNotFound: true);
+            m_FreeRoam_StrengthPowers = m_FreeRoam.FindAction("Strength Powers", throwIfNotFound: true);
+            m_FreeRoam_Sprint = m_FreeRoam.FindAction("Sprint", throwIfNotFound: true);
+            m_FreeRoam_CameraReset = m_FreeRoam.FindAction("Camera Reset", throwIfNotFound: true);
+            m_FreeRoam_Options = m_FreeRoam.FindAction("Options", throwIfNotFound: true);
+            m_FreeRoam_DirUp = m_FreeRoam.FindAction("DirUp", throwIfNotFound: true);
+            m_FreeRoam_DirLeft = m_FreeRoam.FindAction("DirLeft", throwIfNotFound: true);
+            m_FreeRoam_DirRight = m_FreeRoam.FindAction("DirRight", throwIfNotFound: true);
+            m_FreeRoam_DirDown = m_FreeRoam.FindAction("DirDown", throwIfNotFound: true);
+        }
+
+        public void Dispose()
+        {
+            UnityEngine.Object.Destroy(asset);
+        }
+
+        public InputBinding? bindingMask
+        {
+            get => asset.bindingMask;
+            set => asset.bindingMask = value;
+        }
+
+        public ReadOnlyArray<InputDevice>? devices
+        {
+            get => asset.devices;
+            set => asset.devices = value;
+        }
+
+        public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
+
+        public bool Contains(InputAction action)
+        {
+            return asset.Contains(action);
+        }
+
+        public IEnumerator<InputAction> GetEnumerator()
+        {
+            return asset.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public void Enable()
+        {
+            asset.Enable();
+        }
+
+        public void Disable()
+        {
+            asset.Disable();
+        }
+
         // FreeRoam
-        m_FreeRoam = asset.FindActionMap("FreeRoam", throwIfNotFound: true);
-        m_FreeRoam_Movement = m_FreeRoam.FindAction("Movement", throwIfNotFound: true);
-        m_FreeRoam_CameraControl = m_FreeRoam.FindAction("Camera Control", throwIfNotFound: true);
-        m_FreeRoam_Guard = m_FreeRoam.FindAction("Guard", throwIfNotFound: true);
-        m_FreeRoam_LightAttack = m_FreeRoam.FindAction("Light Attack", throwIfNotFound: true);
-        m_FreeRoam_HeavyAttack = m_FreeRoam.FindAction("Heavy Attack", throwIfNotFound: true);
-        m_FreeRoam_RangedAttack = m_FreeRoam.FindAction("Ranged Attack", throwIfNotFound: true);
-        m_FreeRoam_Dodge = m_FreeRoam.FindAction("Dodge", throwIfNotFound: true);
-        m_FreeRoam_SpeedPowers = m_FreeRoam.FindAction("Speed Powers", throwIfNotFound: true);
-        m_FreeRoam_StrengthPowers = m_FreeRoam.FindAction("Strength Powers", throwIfNotFound: true);
-        m_FreeRoam_Sprint = m_FreeRoam.FindAction("Sprint", throwIfNotFound: true);
-        m_FreeRoam_CameraReset = m_FreeRoam.FindAction("Camera Reset", throwIfNotFound: true);
-        m_FreeRoam_Options = m_FreeRoam.FindAction("Options", throwIfNotFound: true);
-        m_FreeRoam_DirUp = m_FreeRoam.FindAction("DirUp", throwIfNotFound: true);
-        m_FreeRoam_DirLeft = m_FreeRoam.FindAction("DirLeft", throwIfNotFound: true);
-        m_FreeRoam_DirRight = m_FreeRoam.FindAction("DirRight", throwIfNotFound: true);
-        m_FreeRoam_DirDown = m_FreeRoam.FindAction("DirDown", throwIfNotFound: true);
-    }
-
-    public void Dispose()
-    {
-        UnityEngine.Object.Destroy(asset);
-    }
-
-    public InputBinding? bindingMask
-    {
-        get => asset.bindingMask;
-        set => asset.bindingMask = value;
-    }
-
-    public ReadOnlyArray<InputDevice>? devices
-    {
-        get => asset.devices;
-        set => asset.devices = value;
-    }
-
-    public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
-
-    public bool Contains(InputAction action)
-    {
-        return asset.Contains(action);
-    }
-
-    public IEnumerator<InputAction> GetEnumerator()
-    {
-        return asset.GetEnumerator();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
-
-    public void Enable()
-    {
-        asset.Enable();
-    }
-
-    public void Disable()
-    {
-        asset.Disable();
-    }
-
-    // FreeRoam
-    private readonly InputActionMap m_FreeRoam;
-    private IFreeRoamActions m_FreeRoamActionsCallbackInterface;
-    private readonly InputAction m_FreeRoam_Movement;
-    private readonly InputAction m_FreeRoam_CameraControl;
-    private readonly InputAction m_FreeRoam_Guard;
-    private readonly InputAction m_FreeRoam_LightAttack;
-    private readonly InputAction m_FreeRoam_HeavyAttack;
-    private readonly InputAction m_FreeRoam_RangedAttack;
-    private readonly InputAction m_FreeRoam_Dodge;
-    private readonly InputAction m_FreeRoam_SpeedPowers;
-    private readonly InputAction m_FreeRoam_StrengthPowers;
-    private readonly InputAction m_FreeRoam_Sprint;
-    private readonly InputAction m_FreeRoam_CameraReset;
-    private readonly InputAction m_FreeRoam_Options;
-    private readonly InputAction m_FreeRoam_DirUp;
-    private readonly InputAction m_FreeRoam_DirLeft;
-    private readonly InputAction m_FreeRoam_DirRight;
-    private readonly InputAction m_FreeRoam_DirDown;
-    public struct FreeRoamActions
-    {
-        private @BaseControls m_Wrapper;
-        public FreeRoamActions(@BaseControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Movement => m_Wrapper.m_FreeRoam_Movement;
-        public InputAction @CameraControl => m_Wrapper.m_FreeRoam_CameraControl;
-        public InputAction @Guard => m_Wrapper.m_FreeRoam_Guard;
-        public InputAction @LightAttack => m_Wrapper.m_FreeRoam_LightAttack;
-        public InputAction @HeavyAttack => m_Wrapper.m_FreeRoam_HeavyAttack;
-        public InputAction @RangedAttack => m_Wrapper.m_FreeRoam_RangedAttack;
-        public InputAction @Dodge => m_Wrapper.m_FreeRoam_Dodge;
-        public InputAction @SpeedPowers => m_Wrapper.m_FreeRoam_SpeedPowers;
-        public InputAction @StrengthPowers => m_Wrapper.m_FreeRoam_StrengthPowers;
-        public InputAction @Sprint => m_Wrapper.m_FreeRoam_Sprint;
-        public InputAction @CameraReset => m_Wrapper.m_FreeRoam_CameraReset;
-        public InputAction @Options => m_Wrapper.m_FreeRoam_Options;
-        public InputAction @DirUp => m_Wrapper.m_FreeRoam_DirUp;
-        public InputAction @DirLeft => m_Wrapper.m_FreeRoam_DirLeft;
-        public InputAction @DirRight => m_Wrapper.m_FreeRoam_DirRight;
-        public InputAction @DirDown => m_Wrapper.m_FreeRoam_DirDown;
-        public InputActionMap Get() { return m_Wrapper.m_FreeRoam; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(FreeRoamActions set) { return set.Get(); }
-        public void SetCallbacks(IFreeRoamActions instance)
+        private readonly InputActionMap m_FreeRoam;
+        private IFreeRoamActions m_FreeRoamActionsCallbackInterface;
+        private readonly InputAction m_FreeRoam_Movement;
+        private readonly InputAction m_FreeRoam_CameraControl;
+        private readonly InputAction m_FreeRoam_Guard;
+        private readonly InputAction m_FreeRoam_LightAttack;
+        private readonly InputAction m_FreeRoam_HeavyAttack;
+        private readonly InputAction m_FreeRoam_RangedAttack;
+        private readonly InputAction m_FreeRoam_Dodge;
+        private readonly InputAction m_FreeRoam_SpeedPowers;
+        private readonly InputAction m_FreeRoam_StrengthPowers;
+        private readonly InputAction m_FreeRoam_Sprint;
+        private readonly InputAction m_FreeRoam_CameraReset;
+        private readonly InputAction m_FreeRoam_Options;
+        private readonly InputAction m_FreeRoam_DirUp;
+        private readonly InputAction m_FreeRoam_DirLeft;
+        private readonly InputAction m_FreeRoam_DirRight;
+        private readonly InputAction m_FreeRoam_DirDown;
+        public struct FreeRoamActions
         {
-            if (m_Wrapper.m_FreeRoamActionsCallbackInterface != null)
+            private @BaseControls m_Wrapper;
+            public FreeRoamActions(@BaseControls wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Movement => m_Wrapper.m_FreeRoam_Movement;
+            public InputAction @CameraControl => m_Wrapper.m_FreeRoam_CameraControl;
+            public InputAction @Guard => m_Wrapper.m_FreeRoam_Guard;
+            public InputAction @LightAttack => m_Wrapper.m_FreeRoam_LightAttack;
+            public InputAction @HeavyAttack => m_Wrapper.m_FreeRoam_HeavyAttack;
+            public InputAction @RangedAttack => m_Wrapper.m_FreeRoam_RangedAttack;
+            public InputAction @Dodge => m_Wrapper.m_FreeRoam_Dodge;
+            public InputAction @SpeedPowers => m_Wrapper.m_FreeRoam_SpeedPowers;
+            public InputAction @StrengthPowers => m_Wrapper.m_FreeRoam_StrengthPowers;
+            public InputAction @Sprint => m_Wrapper.m_FreeRoam_Sprint;
+            public InputAction @CameraReset => m_Wrapper.m_FreeRoam_CameraReset;
+            public InputAction @Options => m_Wrapper.m_FreeRoam_Options;
+            public InputAction @DirUp => m_Wrapper.m_FreeRoam_DirUp;
+            public InputAction @DirLeft => m_Wrapper.m_FreeRoam_DirLeft;
+            public InputAction @DirRight => m_Wrapper.m_FreeRoam_DirRight;
+            public InputAction @DirDown => m_Wrapper.m_FreeRoam_DirDown;
+            public InputActionMap Get() { return m_Wrapper.m_FreeRoam; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(FreeRoamActions set) { return set.Get(); }
+            public void SetCallbacks(IFreeRoamActions instance)
             {
-                @Movement.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnMovement;
-                @Movement.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnMovement;
-                @Movement.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnMovement;
-                @CameraControl.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnCameraControl;
-                @CameraControl.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnCameraControl;
-                @CameraControl.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnCameraControl;
-                @Guard.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnGuard;
-                @Guard.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnGuard;
-                @Guard.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnGuard;
-                @LightAttack.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnLightAttack;
-                @LightAttack.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnLightAttack;
-                @LightAttack.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnLightAttack;
-                @HeavyAttack.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnHeavyAttack;
-                @HeavyAttack.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnHeavyAttack;
-                @HeavyAttack.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnHeavyAttack;
-                @RangedAttack.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnRangedAttack;
-                @RangedAttack.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnRangedAttack;
-                @RangedAttack.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnRangedAttack;
-                @Dodge.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDodge;
-                @Dodge.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDodge;
-                @Dodge.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDodge;
-                @SpeedPowers.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnSpeedPowers;
-                @SpeedPowers.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnSpeedPowers;
-                @SpeedPowers.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnSpeedPowers;
-                @StrengthPowers.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnStrengthPowers;
-                @StrengthPowers.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnStrengthPowers;
-                @StrengthPowers.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnStrengthPowers;
-                @Sprint.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnSprint;
-                @Sprint.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnSprint;
-                @Sprint.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnSprint;
-                @CameraReset.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnCameraReset;
-                @CameraReset.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnCameraReset;
-                @CameraReset.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnCameraReset;
-                @Options.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnOptions;
-                @Options.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnOptions;
-                @Options.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnOptions;
-                @DirUp.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirUp;
-                @DirUp.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirUp;
-                @DirUp.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirUp;
-                @DirLeft.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirLeft;
-                @DirLeft.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirLeft;
-                @DirLeft.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirLeft;
-                @DirRight.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirRight;
-                @DirRight.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirRight;
-                @DirRight.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirRight;
-                @DirDown.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirDown;
-                @DirDown.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirDown;
-                @DirDown.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirDown;
-            }
-            m_Wrapper.m_FreeRoamActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Movement.started += instance.OnMovement;
-                @Movement.performed += instance.OnMovement;
-                @Movement.canceled += instance.OnMovement;
-                @CameraControl.started += instance.OnCameraControl;
-                @CameraControl.performed += instance.OnCameraControl;
-                @CameraControl.canceled += instance.OnCameraControl;
-                @Guard.started += instance.OnGuard;
-                @Guard.performed += instance.OnGuard;
-                @Guard.canceled += instance.OnGuard;
-                @LightAttack.started += instance.OnLightAttack;
-                @LightAttack.performed += instance.OnLightAttack;
-                @LightAttack.canceled += instance.OnLightAttack;
-                @HeavyAttack.started += instance.OnHeavyAttack;
-                @HeavyAttack.performed += instance.OnHeavyAttack;
-                @HeavyAttack.canceled += instance.OnHeavyAttack;
-                @RangedAttack.started += instance.OnRangedAttack;
-                @RangedAttack.performed += instance.OnRangedAttack;
-                @RangedAttack.canceled += instance.OnRangedAttack;
-                @Dodge.started += instance.OnDodge;
-                @Dodge.performed += instance.OnDodge;
-                @Dodge.canceled += instance.OnDodge;
-                @SpeedPowers.started += instance.OnSpeedPowers;
-                @SpeedPowers.performed += instance.OnSpeedPowers;
-                @SpeedPowers.canceled += instance.OnSpeedPowers;
-                @StrengthPowers.started += instance.OnStrengthPowers;
-                @StrengthPowers.performed += instance.OnStrengthPowers;
-                @StrengthPowers.canceled += instance.OnStrengthPowers;
-                @Sprint.started += instance.OnSprint;
-                @Sprint.performed += instance.OnSprint;
-                @Sprint.canceled += instance.OnSprint;
-                @CameraReset.started += instance.OnCameraReset;
-                @CameraReset.performed += instance.OnCameraReset;
-                @CameraReset.canceled += instance.OnCameraReset;
-                @Options.started += instance.OnOptions;
-                @Options.performed += instance.OnOptions;
-                @Options.canceled += instance.OnOptions;
-                @DirUp.started += instance.OnDirUp;
-                @DirUp.performed += instance.OnDirUp;
-                @DirUp.canceled += instance.OnDirUp;
-                @DirLeft.started += instance.OnDirLeft;
-                @DirLeft.performed += instance.OnDirLeft;
-                @DirLeft.canceled += instance.OnDirLeft;
-                @DirRight.started += instance.OnDirRight;
-                @DirRight.performed += instance.OnDirRight;
-                @DirRight.canceled += instance.OnDirRight;
-                @DirDown.started += instance.OnDirDown;
-                @DirDown.performed += instance.OnDirDown;
-                @DirDown.canceled += instance.OnDirDown;
+                if (m_Wrapper.m_FreeRoamActionsCallbackInterface != null)
+                {
+                    @Movement.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnMovement;
+                    @Movement.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnMovement;
+                    @Movement.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnMovement;
+                    @CameraControl.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnCameraControl;
+                    @CameraControl.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnCameraControl;
+                    @CameraControl.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnCameraControl;
+                    @Guard.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnGuard;
+                    @Guard.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnGuard;
+                    @Guard.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnGuard;
+                    @LightAttack.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnLightAttack;
+                    @LightAttack.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnLightAttack;
+                    @LightAttack.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnLightAttack;
+                    @HeavyAttack.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnHeavyAttack;
+                    @HeavyAttack.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnHeavyAttack;
+                    @HeavyAttack.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnHeavyAttack;
+                    @RangedAttack.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnRangedAttack;
+                    @RangedAttack.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnRangedAttack;
+                    @RangedAttack.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnRangedAttack;
+                    @Dodge.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDodge;
+                    @Dodge.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDodge;
+                    @Dodge.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDodge;
+                    @SpeedPowers.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnSpeedPowers;
+                    @SpeedPowers.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnSpeedPowers;
+                    @SpeedPowers.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnSpeedPowers;
+                    @StrengthPowers.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnStrengthPowers;
+                    @StrengthPowers.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnStrengthPowers;
+                    @StrengthPowers.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnStrengthPowers;
+                    @Sprint.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnSprint;
+                    @Sprint.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnSprint;
+                    @Sprint.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnSprint;
+                    @CameraReset.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnCameraReset;
+                    @CameraReset.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnCameraReset;
+                    @CameraReset.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnCameraReset;
+                    @Options.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnOptions;
+                    @Options.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnOptions;
+                    @Options.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnOptions;
+                    @DirUp.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirUp;
+                    @DirUp.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirUp;
+                    @DirUp.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirUp;
+                    @DirLeft.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirLeft;
+                    @DirLeft.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirLeft;
+                    @DirLeft.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirLeft;
+                    @DirRight.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirRight;
+                    @DirRight.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirRight;
+                    @DirRight.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirRight;
+                    @DirDown.started -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirDown;
+                    @DirDown.performed -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirDown;
+                    @DirDown.canceled -= m_Wrapper.m_FreeRoamActionsCallbackInterface.OnDirDown;
+                }
+                m_Wrapper.m_FreeRoamActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @Movement.started += instance.OnMovement;
+                    @Movement.performed += instance.OnMovement;
+                    @Movement.canceled += instance.OnMovement;
+                    @CameraControl.started += instance.OnCameraControl;
+                    @CameraControl.performed += instance.OnCameraControl;
+                    @CameraControl.canceled += instance.OnCameraControl;
+                    @Guard.started += instance.OnGuard;
+                    @Guard.performed += instance.OnGuard;
+                    @Guard.canceled += instance.OnGuard;
+                    @LightAttack.started += instance.OnLightAttack;
+                    @LightAttack.performed += instance.OnLightAttack;
+                    @LightAttack.canceled += instance.OnLightAttack;
+                    @HeavyAttack.started += instance.OnHeavyAttack;
+                    @HeavyAttack.performed += instance.OnHeavyAttack;
+                    @HeavyAttack.canceled += instance.OnHeavyAttack;
+                    @RangedAttack.started += instance.OnRangedAttack;
+                    @RangedAttack.performed += instance.OnRangedAttack;
+                    @RangedAttack.canceled += instance.OnRangedAttack;
+                    @Dodge.started += instance.OnDodge;
+                    @Dodge.performed += instance.OnDodge;
+                    @Dodge.canceled += instance.OnDodge;
+                    @SpeedPowers.started += instance.OnSpeedPowers;
+                    @SpeedPowers.performed += instance.OnSpeedPowers;
+                    @SpeedPowers.canceled += instance.OnSpeedPowers;
+                    @StrengthPowers.started += instance.OnStrengthPowers;
+                    @StrengthPowers.performed += instance.OnStrengthPowers;
+                    @StrengthPowers.canceled += instance.OnStrengthPowers;
+                    @Sprint.started += instance.OnSprint;
+                    @Sprint.performed += instance.OnSprint;
+                    @Sprint.canceled += instance.OnSprint;
+                    @CameraReset.started += instance.OnCameraReset;
+                    @CameraReset.performed += instance.OnCameraReset;
+                    @CameraReset.canceled += instance.OnCameraReset;
+                    @Options.started += instance.OnOptions;
+                    @Options.performed += instance.OnOptions;
+                    @Options.canceled += instance.OnOptions;
+                    @DirUp.started += instance.OnDirUp;
+                    @DirUp.performed += instance.OnDirUp;
+                    @DirUp.canceled += instance.OnDirUp;
+                    @DirLeft.started += instance.OnDirLeft;
+                    @DirLeft.performed += instance.OnDirLeft;
+                    @DirLeft.canceled += instance.OnDirLeft;
+                    @DirRight.started += instance.OnDirRight;
+                    @DirRight.performed += instance.OnDirRight;
+                    @DirRight.canceled += instance.OnDirRight;
+                    @DirDown.started += instance.OnDirDown;
+                    @DirDown.performed += instance.OnDirDown;
+                    @DirDown.canceled += instance.OnDirDown;
+                }
             }
         }
-    }
-    public FreeRoamActions @FreeRoam => new FreeRoamActions(this);
-    private int m_KeyboardControlsSchemeIndex = -1;
-    public InputControlScheme KeyboardControlsScheme
-    {
-        get
+        public FreeRoamActions @FreeRoam => new FreeRoamActions(this);
+        private int m_KeyboardControlsSchemeIndex = -1;
+        public InputControlScheme KeyboardControlsScheme
         {
-            if (m_KeyboardControlsSchemeIndex == -1) m_KeyboardControlsSchemeIndex = asset.FindControlSchemeIndex("Keyboard Controls");
-            return asset.controlSchemes[m_KeyboardControlsSchemeIndex];
+            get
+            {
+                if (m_KeyboardControlsSchemeIndex == -1) m_KeyboardControlsSchemeIndex = asset.FindControlSchemeIndex("Keyboard Controls");
+                return asset.controlSchemes[m_KeyboardControlsSchemeIndex];
+            }
         }
-    }
-    private int m_ControllerControlsSchemeIndex = -1;
-    public InputControlScheme ControllerControlsScheme
-    {
-        get
+        private int m_ControllerControlsSchemeIndex = -1;
+        public InputControlScheme ControllerControlsScheme
         {
-            if (m_ControllerControlsSchemeIndex == -1) m_ControllerControlsSchemeIndex = asset.FindControlSchemeIndex("Controller Controls");
-            return asset.controlSchemes[m_ControllerControlsSchemeIndex];
+            get
+            {
+                if (m_ControllerControlsSchemeIndex == -1) m_ControllerControlsSchemeIndex = asset.FindControlSchemeIndex("Controller Controls");
+                return asset.controlSchemes[m_ControllerControlsSchemeIndex];
+            }
         }
-    }
-    public interface IFreeRoamActions
-    {
-        void OnMovement(InputAction.CallbackContext context);
-        void OnCameraControl(InputAction.CallbackContext context);
-        void OnGuard(InputAction.CallbackContext context);
-        void OnLightAttack(InputAction.CallbackContext context);
-        void OnHeavyAttack(InputAction.CallbackContext context);
-        void OnRangedAttack(InputAction.CallbackContext context);
-        void OnDodge(InputAction.CallbackContext context);
-        void OnSpeedPowers(InputAction.CallbackContext context);
-        void OnStrengthPowers(InputAction.CallbackContext context);
-        void OnSprint(InputAction.CallbackContext context);
-        void OnCameraReset(InputAction.CallbackContext context);
-        void OnOptions(InputAction.CallbackContext context);
-        void OnDirUp(InputAction.CallbackContext context);
-        void OnDirLeft(InputAction.CallbackContext context);
-        void OnDirRight(InputAction.CallbackContext context);
-        void OnDirDown(InputAction.CallbackContext context);
+        public interface IFreeRoamActions
+        {
+            void OnMovement(InputAction.CallbackContext context);
+            void OnCameraControl(InputAction.CallbackContext context);
+            void OnGuard(InputAction.CallbackContext context);
+            void OnLightAttack(InputAction.CallbackContext context);
+            void OnHeavyAttack(InputAction.CallbackContext context);
+            void OnRangedAttack(InputAction.CallbackContext context);
+            void OnDodge(InputAction.CallbackContext context);
+            void OnSpeedPowers(InputAction.CallbackContext context);
+            void OnStrengthPowers(InputAction.CallbackContext context);
+            void OnSprint(InputAction.CallbackContext context);
+            void OnCameraReset(InputAction.CallbackContext context);
+            void OnOptions(InputAction.CallbackContext context);
+            void OnDirUp(InputAction.CallbackContext context);
+            void OnDirLeft(InputAction.CallbackContext context);
+            void OnDirRight(InputAction.CallbackContext context);
+            void OnDirDown(InputAction.CallbackContext context);
+        }
     }
 }

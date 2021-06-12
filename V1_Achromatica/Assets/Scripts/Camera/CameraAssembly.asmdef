@@ -1,0 +1,16 @@
+{
+    "name": "CameraAssembly",
+    "rootNamespace": "CameraFunction",
+    "references": [
+        "GUID:40dee2d8c9920124f8156ae0e1c7220c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

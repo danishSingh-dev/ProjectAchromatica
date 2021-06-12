@@ -35,7 +35,7 @@
                     "id": "f32ef602-c054-4ba4-a331-5f523c71ca99",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap,Hold"
+                    "interactions": "Tap(duration=0.6),SlowTap(duration=1)"
                 },
                 {
                     "name": "Heavy Attack",
@@ -43,7 +43,7 @@
                     "id": "1a5d7f2d-8af1-43f3-b933-2bfe5b8123fb",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap,Hold"
+                    "interactions": "Tap(duration=0.6),SlowTap(duration=1)"
                 },
                 {
                     "name": "Ranged Attack",
@@ -217,7 +217,7 @@
                     "id": "1258fd0c-1eb3-46dc-b20b-f3395e64d6d7",
                     "path": "<Mouse>/delta",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "NormalizeVector2",
                     "groups": "Keyboard Controls",
                     "action": "Camera Control",
                     "isComposite": false,
@@ -227,7 +227,7 @@
                     "name": "",
                     "id": "a662d2ee-893b-4a92-8d80-1dd8b425dce9",
                     "path": "<Gamepad>/buttonWest",
-                    "interactions": "Press,Hold",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Controller Controls",
                     "action": "Light Attack",
@@ -296,6 +296,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller Controls",
+                    "action": "Ranged Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cac1af76-9fcf-45df-ae12-c6fe38b41fb5",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard Controls",
                     "action": "Ranged Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -436,7 +447,12 @@
             "devices": [
                 {
                     "devicePath": "<DualShockGamepad>",
-                    "isOptional": false,
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<XInputController>",
+                    "isOptional": true,
                     "isOR": false
                 }
             ]
