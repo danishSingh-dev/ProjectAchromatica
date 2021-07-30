@@ -35,6 +35,11 @@ namespace InputFunction
         public event System.Action RangedAttackHeldPerformed;
         public event System.Action RangedAttackHeldCanceled;
 
+        // Directional Pad
+        public event System.Action DirDownPerformed;
+        public event System.Action DirDownHeldStarted;
+        public event System.Action DirDownHeldPerformed;
+
 
         // InputActionsAsset
         private BaseControls _controls;
@@ -67,6 +72,9 @@ namespace InputFunction
             _controls.FreeRoam.RangedAttack.started += RangedAttack_started;
             _controls.FreeRoam.RangedAttack.performed += RangedAttack_performed;
             _controls.FreeRoam.RangedAttack.canceled += RangedAttack_canceled;
+
+            _controls.FreeRoam.DirDown.started += DirDown_started;
+            _controls.FreeRoam.DirDown.performed += DirDown_performed;
             
         }
 
@@ -188,6 +196,31 @@ namespace InputFunction
             if(context.interaction is HoldInteraction )
             {
                 RangedAttackHeldCanceled?.Invoke( );
+            }
+        }
+
+
+
+
+        private void DirDown_started( InputAction.CallbackContext context )
+        {
+            if(context.interaction is SlowTapInteraction )
+            {
+                DirDownHeldStarted?.Invoke( );
+            }
+        }
+
+
+        private void DirDown_performed( InputAction.CallbackContext context )
+        {
+            if(context.interaction is SlowTapInteraction )
+            {
+                DirDownHeldPerformed?.Invoke( );
+            }
+            else
+            {
+                DirDownPerformed?.Invoke( );
+
             }
         }
 

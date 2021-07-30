@@ -27,6 +27,16 @@ namespace PlayerFunction
         [SerializeField] private Quaternion _rotationToCamera = Quaternion.Euler( Vector3.zero );
         [SerializeField] private Quaternion _rotationToMoveDirection = Quaternion.Euler( Vector3.zero );
 
+        [Header( "Temporary Weapon" )]
+        [SerializeField] private bool _sheathed = true;
+        [SerializeField] private bool _drawWeapon = false;
+        [SerializeField] private bool _katanaEquipped = false;
+        [SerializeField] private Transform _Greatsword = null;
+        [SerializeField] private Transform _Katana = null;
+        [SerializeField] private Transform _weapon = null;
+        [SerializeField] private Transform _sheathPosition = null;
+        [SerializeField] private Transform _drawnPosition = null;
+
         #endregion
 
 
@@ -35,6 +45,8 @@ namespace PlayerFunction
 
         private void Start( )
         {
+            _weapon = _Greatsword;
+            _Katana.gameObject.SetActive( false );
         }
 
         private void Update( )
@@ -43,7 +55,10 @@ namespace PlayerFunction
 
             CalculateMoveDirection( );
 
+            UpdateWeaponPosition( );
             UpdateAnimator( );
+
+            
         }
 
         private void FixedUpdate( )
@@ -68,33 +83,67 @@ namespace PlayerFunction
         private void Subscribe( )
         {
             _inputReceiver.Movement += OnMove;
+            _inputReceiver.LightAttackPerformed += _inputReceiver_LightAttackPerformed;
+            _inputReceiver.DirDownPerformed += _inputReceiver_DirDownPerformed;
+            _inputReceiver.DirDownHeldPerformed += _inputReceiver_DirDownHeldPerformed;
         }
+
+        
 
         private void UnSubscribe( )
         {
             _inputReceiver.Movement -= OnMove;
+            _inputReceiver.LightAttackPerformed -= _inputReceiver_LightAttackPerformed;
+            _inputReceiver.DirDownPerformed += _inputReceiver_DirDownPerformed;
+
         }
 
         #endregion
 
 
 
-        #region Utility Methods
 
-        //private void GetMovementInput( )
-        //{
-        //    Vector2 vector = Vector2.zero;
-        //    vector = _inputHandler.LeftStickVector;
 
-        //    _horizontal = vector.x;
-        //    _vertical = vector.y;
-        //}
+        #region Update Functions
+
+
+        private void UpdateWeaponPosition( )
+        {
+            if ( !_drawWeapon )
+            {
+                _weapon.position = _sheathPosition.position;
+                _weapon.rotation = _sheathPosition.rotation;
+
+            }
+            else
+            {
+                _weapon.position = _drawnPosition.position;
+                _weapon.rotation = _drawnPosition.rotation;
+            }
+        }
+
+        private void UpdateActiveWeapon( )
+        {
+            if ( _katanaEquipped )
+            {
+                _Greatsword.gameObject.SetActive( false );
+                _Katana.gameObject.SetActive( true );
+                _weapon = _Katana;
+            }
+            else
+            {
+                _Katana.gameObject.SetActive( false );
+                _Greatsword.gameObject.SetActive( true );
+                _weapon = _Greatsword;
+            }
+        }
+
         private void UpdateAnimator( )
         {
             _animator.SetFloat( "Horizontal" , _horizontal );
             _animator.SetFloat( "Vertical" , _vertical );
 
-            if ( _horizontal != 0f || _vertical != 0f )
+            if ( CheckIfWalking() )
             {
                 _animator.SetBool( "isWalking" , true );
             }
@@ -102,12 +151,87 @@ namespace PlayerFunction
             {
                 _animator.SetBool( "isWalking" , false );
             }
+
+            if ( _sheathed )
+            {
+                _animator.SetBool( "isSheathed" , true );
+            }
+            else
+            {
+                _animator.SetBool( "isSheathed" , false );
+            }
         }
+
+
+        #endregion
+
+
+        #region Animation Events
+
+        public void WeaponDrawn( )
+        {
+            _drawWeapon = true;
+        }
+
+        public void WeaponSheathed( )
+        {
+            _drawWeapon = false;
+        }
+
+        #endregion
+
+
+
+        #region Input Functions
 
         private void OnMove( Vector2 vector )
         {
             _horizontal = vector.x;
             _vertical = vector.y;
+        }
+
+        private void _inputReceiver_LightAttackPerformed( )
+        {
+            
+        }
+
+        private void _inputReceiver_DirDownPerformed( )
+        {
+            Debug.Log( "DirDown Pressed" );
+            _katanaEquipped = !_katanaEquipped;
+            UpdateActiveWeapon( );
+            
+            
+            
+        }
+
+        private void _inputReceiver_DirDownHeldPerformed( )
+        {
+            Debug.Log( "DirDown Held" );
+           
+            if ( !CheckIfWalking( ) )
+            {
+                _sheathed = !_sheathed;
+            }
+        }
+
+
+        #endregion 
+
+
+
+        #region Utility Methods
+
+        private bool CheckIfWalking( )
+        {
+            if( _horizontal != 0f || _vertical != 0f )
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
 
@@ -140,6 +264,18 @@ namespace PlayerFunction
             //transform.rotation = Quaternion.Slerp( transform.rotation , _rotationToMoveDirection , _rotationSmoothing * Time.fixedDeltaTime );
             transform.position = Vector3.Lerp( transform.position , newPosition , _moveSmoothing);
         }
+
+        // Unused Functions //
+
+        //private void GetMovementInput( )
+        //{
+        //    Vector2 vector = Vector2.zero;
+        //    vector = _inputHandler.LeftStickVector;
+
+        //    _horizontal = vector.x;
+        //    _vertical = vector.y;
+        //}
+
         #endregion
     }
 }

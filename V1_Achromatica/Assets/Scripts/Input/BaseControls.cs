@@ -66,7 +66,7 @@ namespace InputFunction
                     ""id"": ""2b29833b-c858-4613-bb8b-ee83acc80f12"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap,Hold""
+                    ""interactions"": ""Tap,Hold(duration=2)""
                 },
                 {
                     ""name"": ""Dodge"",
@@ -146,7 +146,7 @@ namespace InputFunction
                     ""id"": ""0f8477f2-b92c-4b22-9362-df5554b522ec"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap,Hold""
+                    ""interactions"": ""Tap(duration=0.6),SlowTap(duration=1)""
                 }
             ],
             ""bindings"": [
@@ -432,6 +432,17 @@ namespace InputFunction
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controller Controls"",
+                    ""action"": ""DirDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b391a996-aee5-4c57-b103-f5459404309f"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard Controls"",
                     ""action"": ""DirDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

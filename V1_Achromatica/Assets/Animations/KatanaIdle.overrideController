@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: KatanaIdle
+  m_Controller: {fileID: 9100000, guid: 7c9379525fc30a24d81ef5f9771ee469, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 738b43c856812d44485cce817b79ea06, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: f616a2e271f109447b49d45d058a4084, type: 3}
