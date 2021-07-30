@@ -28,6 +28,9 @@ namespace PlayerFunction
         [SerializeField] private Quaternion _rotationToMoveDirection = Quaternion.Euler( Vector3.zero );
 
         [Header( "Temporary Weapon" )]
+        [SerializeField] private bool _readyToAttack = false;
+        [SerializeField] private bool _isAttacking = false;
+        [SerializeField] private bool _continueAttack = false;
         [SerializeField] private bool _sheathed = true;
         [SerializeField] private bool _drawWeapon = false;
         [SerializeField] private bool _katanaEquipped = false;
@@ -63,7 +66,10 @@ namespace PlayerFunction
 
         private void FixedUpdate( )
         {
-            MovePlayerWithTransform( );
+            if ( !_isAttacking )
+            {
+                MovePlayerWithTransform( );
+            }
         }
 
         private void OnEnable( )
@@ -160,6 +166,26 @@ namespace PlayerFunction
             {
                 _animator.SetBool( "isSheathed" , false );
             }
+
+            if ( _isAttacking )
+            {
+                _animator.SetBool( "isAttacking" , true );
+            }
+            else
+            {
+                _animator.SetBool( "isAttacking" , false );
+            }
+
+            if ( _continueAttack )
+            {
+                _animator.SetBool( "ContinueAttack" , true );
+
+            }
+            else
+            {
+                _animator.SetBool( "ContinueAttack" , false );
+
+            }
         }
 
 
@@ -171,11 +197,30 @@ namespace PlayerFunction
         public void WeaponDrawn( )
         {
             _drawWeapon = true;
+            _readyToAttack = true;
+            //_sheathed = true;
         }
 
         public void WeaponSheathed( )
         {
             _drawWeapon = false;
+            _readyToAttack = false;
+            //_sheathed = false;
+        }
+
+        public void ReadyAttack( )
+        {
+            _readyToAttack = true;
+        }
+
+        public void ResetIsAttacking( )
+        {
+            _isAttacking = false;
+        }
+
+        public void ResetContinueAttack( )
+        {
+            _continueAttack = false;
         }
 
         #endregion
@@ -192,7 +237,15 @@ namespace PlayerFunction
 
         private void _inputReceiver_LightAttackPerformed( )
         {
-            
+            if ( !_sheathed && _isAttacking )
+            {
+                _continueAttack = true;
+            }
+            else if(!_sheathed && !_isAttacking && _readyToAttack )
+            {
+                _isAttacking = true;
+                _readyToAttack = false;
+            }
         }
 
         private void _inputReceiver_DirDownPerformed( )

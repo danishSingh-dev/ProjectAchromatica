@@ -25,5 +25,11 @@ namespace PlayerFunction
             Debug.Log( "Sheathe weapon" );
             playerController.WeaponSheathed( );
         }
+
+        public void SetIsAttackingFalse( )
+        {
+            Debug.Log( "Reset isAttacking" );
+            playerController.ResetIsAttacking( );
+        }
     }
 }
