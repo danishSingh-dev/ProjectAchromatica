@@ -13,6 +13,7 @@ namespace PlayerFunction
         [Header( "Components" )]
         [SerializeField] private InputReceiver _inputReceiver = null;
         [SerializeField] private Rigidbody _rigidbody = null;
+        [SerializeField] private Animator _animator = null;
 
         [Header( "Settings" )]
         [SerializeField] private float _moveSpeed = 5f;
@@ -24,6 +25,7 @@ namespace PlayerFunction
         [SerializeField] private float _vertical = 0f;
         [SerializeField] private Vector3 _moveDirection = Vector3.zero;
         [SerializeField] private Quaternion _rotationToCamera = Quaternion.Euler( Vector3.zero );
+        [SerializeField] private Quaternion _rotationToMoveDirection = Quaternion.Euler( Vector3.zero );
 
         #endregion
 
@@ -31,11 +33,17 @@ namespace PlayerFunction
 
         #region MonoBehaviour Methods
 
+        private void Start( )
+        {
+        }
+
         private void Update( )
         {
             //GetMovementInput( );
 
             CalculateMoveDirection( );
+
+            UpdateAnimator( );
         }
 
         private void FixedUpdate( )
@@ -81,7 +89,20 @@ namespace PlayerFunction
         //    _horizontal = vector.x;
         //    _vertical = vector.y;
         //}
+        private void UpdateAnimator( )
+        {
+            _animator.SetFloat( "Horizontal" , _horizontal );
+            _animator.SetFloat( "Vertical" , _vertical );
 
+            if ( _horizontal != 0f || _vertical != 0f )
+            {
+                _animator.SetBool( "isWalking" , true );
+            }
+            else
+            {
+                _animator.SetBool( "isWalking" , false );
+            }
+        }
 
         private void OnMove( Vector2 vector )
         {
@@ -95,9 +116,12 @@ namespace PlayerFunction
             _moveDirection = ( Vector3.forward * _vertical ) + ( Vector3.right * _horizontal );
 
             Vector3 projectedCameraForward = Vector3.ProjectOnPlane( Camera.main.transform.forward , Vector3.up );
+
             _rotationToCamera = Quaternion.LookRotation( projectedCameraForward , Vector3.up );
 
             _moveDirection = _rotationToCamera * _moveDirection;
+
+            //_rotationToMoveDirection = Quaternion.LookRotation( _moveDirection , Vector3.up );
         }
 
         private void MovePlayerWithTransform( )
@@ -107,12 +131,14 @@ namespace PlayerFunction
             float difference = Vector3.Distance( transform.position , newPosition );
 
 
-            transform.position = Vector3.Lerp( transform.position , newPosition , _moveSmoothing);
 
             if(difference > 0.01f)
             {
                 transform.rotation = Quaternion.Slerp( transform.rotation , _rotationToCamera , _rotationSmoothing * Time.fixedDeltaTime );
             }
+
+            //transform.rotation = Quaternion.Slerp( transform.rotation , _rotationToMoveDirection , _rotationSmoothing * Time.fixedDeltaTime );
+            transform.position = Vector3.Lerp( transform.position , newPosition , _moveSmoothing);
         }
         #endregion
     }
